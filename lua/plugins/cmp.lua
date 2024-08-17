@@ -13,7 +13,7 @@ return {
 	mapping = cmp.mapping.preset.insert({
 	  ["<C-p>"] = cmp.mapping.select_prev_item({ behavior = "select" }),
 	  ["<C-n>"] = cmp.mapping.select_next_item({ behavior = "select" }),
-	  ["<CR>"] = cmp.mapping.confirm({ select = true }),
+	  ["<Tab>"] = cmp.mapping.confirm({ select = true }),
 	  ["<C-Space>"] = cmp.mapping.complete(),
 	}),
       })
