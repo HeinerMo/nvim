@@ -1,3 +1,5 @@
+local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
+
 local on_attach = function(_, bufnr)
   local function buf_set_option(...)
     vim.api.nvim_buf_set_option(bufnr, ...)
@@ -37,7 +39,7 @@ return {
     "williamboman/mason-lspconfig.nvim",
     config = function()
       require("mason-lspconfig").setup({
-        ensure_installed = { "tsserver", "pyright", "lua_ls" }
+        ensure_installed = { "tsserver", "lua_ls", "cssls", "html"}
       })
     end,
     dependencies = { "williamboman/mason.nvim", "neovim/nvim-lspconfig" },
@@ -46,10 +48,9 @@ return {
     "neovim/nvim-lspconfig",
     config = function()
       local lspconfig = require("lspconfig")
-      -- Configure individual LSP servers with `on_attach`
-      lspconfig.tsserver.setup({ on_attach = on_attach })
-      lspconfig.pyright.setup({ on_attach = on_attach })
-      lspconfig.rust_analyzer.setup({ on_attach = on_attach })
+      lspconfig.tsserver.setup({ on_attach = on_attach, capabilities = capabilities})
+      lspconfig.cssls.setup({ on_attach = on_attach, capabilities = capabilities})
+      lspconfig.html.setup({ on_attach = on_attach, capabilities = capabilities })
       lspconfig.lua_ls.setup({
         on_attach = on_attach,
         settings = {
