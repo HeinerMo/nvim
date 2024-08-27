@@ -39,7 +39,7 @@ return {
     "williamboman/mason-lspconfig.nvim",
     config = function()
       require("mason-lspconfig").setup({
-        ensure_installed = { "tsserver", "lua_ls", "cssls", "html"}
+        ensure_installed = { "tsserver", "lua_ls", "cssls", "html", "jdtls"}
       })
     end,
     dependencies = { "williamboman/mason.nvim", "neovim/nvim-lspconfig" },
@@ -51,6 +51,7 @@ return {
       lspconfig.tsserver.setup({ on_attach = on_attach, capabilities = capabilities})
       lspconfig.cssls.setup({ on_attach = on_attach, capabilities = capabilities})
       lspconfig.html.setup({ on_attach = on_attach, capabilities = capabilities })
+      lspconfig.jdtls.setup({ on_attach = on_attach, capabilities = capabilities })
       lspconfig.lua_ls.setup({
         on_attach = on_attach,
         settings = {
